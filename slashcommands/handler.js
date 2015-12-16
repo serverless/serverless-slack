@@ -11,12 +11,12 @@
 var ServerlessHelpers = require('serverless-helpers-js').loadEnv();
 
 // Require Logic
-var lib = require('../lib');
+var slashCommands = require('../lib/controllers/slashcommands');
 
 // Lambda Handler
-module.exports.handler = function(event, context) {
+module.exports.hello = function(event, context) {
 
-  lib.respond(event, function(error, response) {
+  slashCommands.hello(event, function(error, response) {
     return context.done(error, response);
   });
 };

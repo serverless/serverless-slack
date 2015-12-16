@@ -5,14 +5,14 @@
         "excludePatterns": [],
         "envVars": []
       },
-      "handler": "modules/serverless-slackbot/slashcommands/handler.handler",
+      "handler": "modules/serverless-slackbot/slashcommands/handler.hello",
       "timeout": 6,
       "memorySize": 1024,
       "eventSourceArn": "",
       "endpoints": [
         {
-          "path": "serverless-slackbot/slashcommands",
-          "method": "GET",
+          "path": "slackbot/slashcommands/hello",
+          "method": "POST",
           "authorizationType": "none",
           "apiKeyRequired": false,
           "requestParameters": {},
