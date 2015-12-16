@@ -12,6 +12,7 @@
   "keywords": [],
   "devDependencies": {},
   "dependencies": {
+    "aws-sdk": "^2.2.23",
     "serverless-helpers-js": "~0.0.3",
     "slack-node": "^0.1.7"
   }
