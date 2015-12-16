@@ -12,7 +12,7 @@
       "endpoints": [
         {
           "path": "slackbot/slashcommands/hello",
-          "method": "POST",
+          "method": "GET",
           "authorizationType": "none",
           "apiKeyRequired": false,
           "requestParameters": {},
