@@ -11,7 +11,7 @@
       "eventSourceArn": "",
       "endpoints": [
         {
-          "path": "serverless-slackbot/authorization",
+          "path": "slackbot/authorization",
           "method": "GET",
           "authorizationType": "none",
           "apiKeyRequired": false,
