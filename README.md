@@ -1,7 +1,5 @@
 # serverless-slack
 
-**Note:** Work in progress...
-
 This is a Serverless Module that offers Slack boilerplate funcitonality.  This runs without servers (entirely on AWS Lambda).  It is designed to give you almost everything you need to build your own Slack Application and distribute it.
 
 Unfortunately, this doesn't connect/support Slack's RTM (Websockets) API because AWS/Lambda do not support websockets.  But, it still can do tons of great stuff!
