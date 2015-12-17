@@ -92,7 +92,7 @@
           "apiKeyRequired": false,
           "requestParameters": {},
           "requestTemplates": {
-            "x-www-form-urlencoded": "{\"body\" : $input.json(\"$\")}"
+            "application/x-www-form-urlencoded": "{\"body\" : $input.json(\"$\")}"
           },
           "responses": {
             "400": {
