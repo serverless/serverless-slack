@@ -2,7 +2,7 @@
  * Controller: SlashCommands
  */
 
-var Slack = require('./slack');
+var Slack = require('../services/slack');
 
 module.exports.hello = function(event, cb) {
 

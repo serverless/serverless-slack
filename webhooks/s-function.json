@@ -1,17 +1,17 @@
 {
   "functions": {
-    "webhook": {
+    "webhooks": {
       "custom": {
         "excludePatterns": [],
         "envVars": []
       },
-      "handler": "modules/serverless-slackbot/webhook/handler.handler",
+      "handler": "modules/serverless-slackbot/webhooks/handler.handler",
       "timeout": 6,
       "memorySize": 1024,
       "eventSourceArn": "",
       "endpoints": [
         {
-          "path": "serverless-slackbot/webhook",
+          "path": "serverless-slackbot/webhooks",
           "method": "GET",
           "authorizationType": "none",
           "apiKeyRequired": false,

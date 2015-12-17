@@ -2,8 +2,8 @@
  * Controller: Authorization
  * - Authorizes Slack via Oauth
  */
-
-var Team = require('./teams'),
+var Team    = require('../models/team'),
+    team    = new Team(),
     request = require('request');
 
 // Get Access Token
@@ -27,32 +27,45 @@ module.exports.getAccessToken = function(event, context) {
   // Send request to get Access Token
   return request(url, function (error, response, body) {
 
-    if (!error && response.statusCode == 200) {
-      console.log(body);
-
-      Team.show(body.team_id, function(error, team) {
-
-        if (error) {
-
-        } else {
-
-        }
-
-
-        // Return response
-        return context.done(null, {
-          message: ""
-        });
-
-      });
-
-    } else {
-      console.log(error, response, body);
-
-      // Return error
+    // Return error
+    if (error || response.statusCode !== 200) {
+      console.log(error, response.statusCode);
       return context.done({
         message: "Sorry, something went wrong with the authorization process"
       });
     }
+
+    // Parse stringified JSON
+    body = JSON.parse(body);
+
+    // Set team attributes
+    var slackTeam = {
+      id:                                 body.team_id,
+      name:                               body.team_name,
+      scope:                              body.scope,
+      access_token:                       body.access_token,
+      bot_user_id:                        body.bot_user_id,
+      bot_access_token:                   body.bot_access_token,
+      incoming_webhook_url:               body.incoming_webhook.url,
+      incoming_webhook_channel:           body.incoming_webhook.channel,
+      incoming_webhook_configuration_url: body.incoming_webhook.configuration_url
+    };
+
+    // Create or Update team
+    team.save(slackTeam, function(error, slackTeam) {
+
+      // Return error
+      if (error) {
+        console.log(error);
+        return context.done({
+          message: "Sorry, something went wrong saving your team's information"
+        });
+      }
+      
+      // Return response
+      return context.done(null, {
+        message: 'Your team ' + slackTeam.name + ' has successfully conencted to this bot!'
+      });
+    });
   });
 };

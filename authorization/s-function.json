@@ -2,7 +2,9 @@
   "functions": {
     "authorization": {
       "custom": {
-        "excludePatterns": [],
+        "excludePatterns": [
+          "node_modules/aws-sdk/"
+        ],
         "envVars": []
       },
       "handler": "modules/serverless-slackbot/authorization/handler.getAccessToken",

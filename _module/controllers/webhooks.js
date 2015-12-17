@@ -2,8 +2,6 @@
  * Slack Webhooks Controller
  */
 
-var Slack = require('./slack');
+var Slack = require('../services/slack');
 
-module.exports.respond = function() {
-
-};
+module.exports.respond = function() {};

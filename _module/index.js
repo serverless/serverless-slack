@@ -13,7 +13,7 @@ module.exports = {
     slack:         require('./services/slack')
   },
   models: {
-    teams:         require('./models/teams')
+    teams:         require('./models/team')
   },
   controllers: {
     authorization: require('./controllers/authorization'),

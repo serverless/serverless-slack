@@ -5,13 +5,13 @@
  * - A Slack team that has authorized your Slack Application
  */
 
-// Config DynamoDb
+// Configure DynamoDb
 var AWS = require('aws-sdk');
-var dynamodbDocClient = new AWS.DynamoDB.DocumentClient({
-  accessKeyId:     process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region:          process.env.SERVERLESS_REGION
-});
+var dynamoConfig = {
+  sessionToken:    process.env.AWS_SESSION_TOKEN,
+  region:          process.env.AWS_REGION
+};
+var dynamodbDocClient = new AWS.DynamoDB.DocumentClient(dynamoConfig);
 var tableName = 'serverless-slackbot-teams-' + process.env.SERVERLESS_DATA_MODEL_STAGE;
 
 /**
@@ -38,20 +38,18 @@ Team.prototype.show = function(teamId, cb) {
 };
 
 /**
- * Create
+ * Save
  */
 
-Team.prototype.create = function() {
+Team.prototype.save = function(team, cb) {
 
+  var params = {
+    TableName : tableName,
+    Item: team,
+    ReturnValues: 'ALL_OLD'
+  };
+
+  dynamodbDocClient.put(params, cb);
 };
 
-/**
- * Update
- */
-
-Team.prototype.update = function() {
-
-};
-
-
-module.exports = new Team();
+module.exports = Team;
