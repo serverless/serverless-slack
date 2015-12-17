@@ -1,6 +1,27 @@
 # serverless-slackbot
 
-Create webhooks and slash commands for your Slack team without servers.
+**Note:** Work in progress...
+
+This is a Slackbot boilerplate that runs without servers (entirely on AWS Lambda).  It is designed to give you everything you need to build your own Slack Application and distribute it.
+
+Unfortunately, this doesn't connect/support Slack's RTM (Websockets) API because AWS/Lambda don't support websockets.  But, it still can do tons of great stuff... and without servers, of course!
+
+**The best part is there are no servers required for this Slackbot.  You get charged only when its called and you don't need to every worry about scaling this :)
+
+## Features:
+
+* Handle Slack App Authorization and store Team data in DynamoDB
+* Process Outgoing Webhooks (receive messages coming from Slack)
+* Process Incoming Webhooks (post message to Slack)
+* Process SlashCommands
+* Loaded with [slack-node](https://github.com/clonn/slack-node-sdk) so you can access the full Slack API.
+* Uses Lambda and DynamoDb which will allow you to auto-scale infinitely
+* Multi-stage support for testing/production/multi-developer teams.
+
+## Getting Started
+
+[Register a Slack App](https://api.slack.com/applications)
+
 
 In your Serverless project root directory, run:
 
@@ -8,17 +29,18 @@ In your Serverless project root directory, run:
 serverless module install https://github.com/serverless/serverless-slackbot
 ```
 
-## Creating Slash Commands
+Then deploy the resources that have been added to your Serverless Project's `resources-cd.json` template:
 
-Once you install the module, a simple slash command webhook is created for you. If you open up `<module-dir>/slashcommands/s-function.json` you'll find all the information you need about the webhook.
+```
+serverless deploy resources
+```
 
-## Creating Webhooks
-
-## Accessing Slack API
-
-## Environment Variables
-You must set these environment variables in your Serverless Project's Stage and Region:
+Set these environment variables in your Serverless Project's Stage and Region, use `serverless env set`:
 
 * SLACK_OAUTH_CLIENT_ID
 * SLACK_OAUTH_CLIENT_SECRET
 * SLACK_AUTH_REDIRECT_URL *(Optional - Only set this up if you set up a custom domain with API Gateway)*
+
+Deploy the module's functions and endpoints.  Use the authorization endpoint as the **Redirect URI** for your Slack app.
+
+You will have to [register some Slash Commands](https://api.slack.com/applications) for your app if you are interested in those.
