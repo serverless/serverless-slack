@@ -19,9 +19,6 @@ Once you install the module, a simple slash command webhook is created for you. 
 ## Environment Variables
 You must set these environment variables in your Serverless Project's Stage and Region:
 
-* SERVERLESS_REGION
-* AWS_ACCESS_KEY_ID
-* AWS_SECRET_ACCESS_KEY
 * SLACK_OAUTH_CLIENT_ID
 * SLACK_OAUTH_CLIENT_SECRET
 * SLACK_AUTH_REDIRECT_URL *(Optional - Only set this up if you set up a custom domain with API Gateway)*

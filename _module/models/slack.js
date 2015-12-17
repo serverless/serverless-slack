@@ -8,24 +8,17 @@ var SlackSDK = require('slack-node'),
  * @constructor
  */
 
-var Slack = function() {};
+var Slack = {};
 
 /**
  * Send Incoming Webhook
  * - Sends a message into Slack
  */
 
-Slack.prototype.sendIncomingWebhook = function(teamId, options, cb) {
-
-  // Find Team
-  var team = new Team();
-  team.show(teamId, function(error, slackTeam) {
-
-    // Instantiate Slack
-    var slackSdk = new SlackSDK(slackTeam.access_token);
-
+Slack.sendIncomingWebhook = function(accessToken, options, cb) {
+    var slackSdk = new SlackSDK(accessToken);
+    slackSdk.setWebhook(options.webhookUri);
     return slackSdk.webhook(options, cb);
-  });
 };
 
 module.exports = Slack;

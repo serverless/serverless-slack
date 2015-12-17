@@ -5,6 +5,7 @@
 
 var Team    = require('../models/team'),
     team    = new Team(),
+    Slack   = require('../models/slack'),
     request = require('request');
 
 /**
@@ -67,10 +68,21 @@ module.exports.authorize = function(event, context) {
         });
       }
 
-      // Return response
-      return context.done(null, {
-        message: 'Your team has successfully connected to this bot!'
-      });
+      // Send incoming webhook
+      Slack.sendIncomingWebhook(
+          body.access_token,
+          {
+            webhookUri:  body.incoming_webhook.url,
+            text:        'Success, you have just connected me!'
+          },
+          function(error, result) {
+
+            // Return response
+            return context.done(null, {
+              message: 'Your team has successfully connected to this bot!'
+            });
+          }
+      );
     });
   });
 };

@@ -4,19 +4,14 @@
 
 var Slack = require('../models/slack');
 
-module.exports.receive = function(event, cb) {
+module.exports.receive = function(event, context) {
 
-  var text = 'Hey There!';
+  //TODO: Check Verification Token (set as ENV var) to ensure request came from Slack
 
-  var response = {
-    "text": text,
-    "attachments": [
-      {
-        "text": text
-      }
-    ]
-  };
+  console.log(event, context);
 
-  return cb(null, response);
+  return context.done(null, {
+    message: "Sorry, something went wrong saving your team's information"
+  });
 
 };
