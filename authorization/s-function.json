@@ -5,7 +5,7 @@
         "excludePatterns": [],
         "envVars": []
       },
-      "handler": "modules/serverless-slackbot/authorization/handler.handler",
+      "handler": "modules/serverless-slackbot/authorization/handler.getAccessToken",
       "timeout": 6,
       "memorySize": 1024,
       "eventSourceArn": "",
@@ -15,9 +15,12 @@
           "method": "GET",
           "authorizationType": "none",
           "apiKeyRequired": false,
-          "requestParameters": {},
+          "requestParameters": {
+            "integration.request.querystring.code": "method.request.querystring.code",
+            "integration.request.querystring.state": "method.request.querystring.state"
+          },
           "requestTemplates": {
-            "application/json": ""
+            "application/json": "{\"code\":\"$input.params('code')\"}"
           },
           "responses": {
             "400": {
