@@ -17,11 +17,20 @@
             ":",
             [
               "arn:aws:dynamodb",
-              { "Ref": "AWS::Region" },
-              "*",
-              "table/serverless-slackbot-teams-",
               {
-                "Ref": "DataModelStage"
+                "Ref": "AWS::Region"
+              },
+              "*",
+              {
+                "Fn::Join": [
+                  "-",
+                  [
+                    "table/serverless-slackbot-teams",
+                    {
+                      "Ref": "DataModelStage"
+                    }
+                  ]
+                ]
               }
             ]
           ]
@@ -52,7 +61,17 @@
               "Ref": "DynamoRWThroughput"
             }
           },
-          "TableName": "serverless-slackbot-teams"
+          "TableName": {
+            "Fn::Join": [
+              "-",
+              [
+                "serverless-slackbot-teams",
+                {
+                  "Ref": "DataModelStage"
+                }
+              ]
+            ]
+          }
         }
       }
     }
