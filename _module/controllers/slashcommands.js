@@ -2,16 +2,20 @@
  * Controller: SlashCommands
  */
 
-var Slack = require('../models/slack');
+var Slack    = require('../models/slack'),
+    response = { text: 'This is a default response' };
 
 module.exports.receive = function(event, context) {
 
-  //TODO: Check Verification Token (set as ENV var) to ensure request came from Slack
+  // Make sure the POST request comes from Slack using the event token
+  if (event.token != process.env.EVENT_TOKEN) {
+    return context.done('Access Denied');
+  }
 
-  console.log(event, context);
+  // Example Slash Command.
+  if (event.command === '/hello') {
+    response.text = 'Hey There!';
+  }
 
-  return context.done(null, {
-    message: "Sorry, something went wrong saving your team's information"
-  });
-
+  return context.done(null, response);
 };

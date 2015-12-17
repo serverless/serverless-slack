@@ -43,4 +43,58 @@ Set these environment variables in your Serverless Project's Stage and Region, u
 
 Deploy the module's functions and endpoints.  Use the authorization endpoint as the **Redirect URI** for your Slack app.
 
-You will have to [register some Slash Commands](https://api.slack.com/applications) for your app on Slack's site if you are interested in those.
+### Setting Up Slash Commands
+
+In the [application settings page](https://api.slack.com/applications), you can create any number of Slash Commands for your app. Each Slash Command requires an endpoint. You can use the same default endpoint that you deployed earlier (`<host>/<stage>/slackbot/slashcommand`) for all Slash Commands, and in your function logic, you can check which Slash Command was POSTed and act accordingly. Here's how it works...
+ 
+Open up the Slash Commands controller in `<module-dir>/_module/controllers/slashcommands.js`. By default, you should see the following code:
+
+```javascript
+
+var Slack    = require('../models/slack'),
+    response = { text: 'This is a default response' };
+
+module.exports.receive = function(event, context) {
+
+  // Make sure the POST request comes from Slack using the event token
+  if (event.token != process.env.EVENT_TOKEN) {
+    return context.done('Access Denied');
+  }
+
+  // Example Slash Command.
+  if (event.command === '/hello') {
+    response.text = 'Hey There!';
+  }
+
+  return context.done(null, response);
+};
+```
+
+By default, we're expecting a `/hello` command as an example, you can remove this command and add as many Slash Commands as you want, let's add a `/myname` command. Here's how the controller should look like:
+
+```
+var Slack    = require('../models/slack'),
+    response = { text: 'This is a default response' };
+
+module.exports.receive = function(event, context) {
+
+  // Make sure the POST request comes from Slack using the event token
+  if (event.token != process.env.EVENT_TOKEN) {
+    return context.done('Access Denied');
+  }
+
+  // Example Slash Command.
+  if (event.command === '/hello') {
+    response.text = 'Hey There!';
+  }
+  
+  // Another Slash Command.
+  if (event.command === '/myname') {
+    response.text = 'Your name is ' + event.user_name;
+  }
+
+  return context.done(null, response);
+};
+```
+
+Now we have both `/hello` and `/myname` commands. You can get super fancy and do whatever you want inside those if statements (check weather, get local time...anything!) and adjust the response accordingly. You can construct the `response` variable to any [valid JSON that Slack expects](https://api.slack.com/slash-commands). If your code gets bigger, you can divide the code up into separate files inside the `_module` directory.
