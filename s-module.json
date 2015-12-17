@@ -7,28 +7,34 @@
   "author": "",
   "description": "",
   "custom": {},
-  "cloudFormation": {
-    "Resources": {
-      "DynamoDB": {
-        "Type" : "AWS::DynamoDB::Table",
-        "Properties": {
-          "AttributeDefinitions": [
-            {
-              "AttributeName": "id",
-              "AttributeType": "S"
-            }
-          ],
-          "KeySchema" : [
-            {
-              "AttributeName": "id",
-              "KeyType": "HASH"
-            }
-          ],
-          "ProvisionedThroughput" : {
-            "ReadCapacityUnits":  { "Ref" : "DynamoRWThroughput" },
-            "WriteCapacityUnits": { "Ref" : "DynamoRWThroughput" }
-          },
-          "TableName": "serverless-slackbot-teams"
+  "resources": {
+    "cloudFormation": {
+      "Resources": {
+        "DynamoDB": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "id",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "id",
+                "KeyType": "HASH"
+              }
+            ],
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": {
+                "Ref": "DynamoRWThroughput"
+              },
+              "WriteCapacityUnits": {
+                "Ref": "DynamoRWThroughput"
+              }
+            },
+            "TableName": "serverless-slackbot-teams"
+          }
         }
       }
     }
