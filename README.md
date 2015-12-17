@@ -45,7 +45,7 @@ Deploy the module's functions and endpoints.  Use the authorization endpoint as 
 
 ### Setting Up Slash Commands
 
-In the [application settings page](https://api.slack.com/applications), you can create any number of Slash Commands for your app. Each Slash Command requires an endpoint. You can use the same default endpoint that you deployed earlier (`<host>/<stage>/slackbot/slashcommand`) for all Slash Commands, and in your function logic, you can check which Slash Command was POSTed and act accordingly. Here's how it works...
+In the [application settings page](https://api.slack.com/applications), you can create any number of Slash Commands for your app. Each Slash Command requires an endpoint. You can use the same default `/slackbot/slashcommand` endpoint that you deployed earlier for all Slash Commands, and in your function logic, you can check which Slash Command was POSTed and act accordingly. Here's how it works...
  
 Open up the Slash Commands controller in `<module-dir>/_module/controllers/slashcommands.js`. By default, you should see the following code:
 
@@ -72,7 +72,7 @@ module.exports.receive = function(event, context) {
 
 By default, we're expecting a `/hello` command as an example, you can remove this command and add as many Slash Commands as you want, let's add a `/myname` command. Here's how the controller should look like:
 
-```
+```javascript
 var Slack    = require('../models/slack'),
     response = { text: 'This is a default response' };
 

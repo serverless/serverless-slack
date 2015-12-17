@@ -7,7 +7,7 @@ var Slack    = require('../models/slack'),
 
 module.exports.receive = function(event, context) {
 
-  // Make sure the POST request comes from Slack using the event token
+  // Make sure the POST request came from Slack using the event token
   if (event.token != process.env.EVENT_TOKEN) {
     return context.done('Access Denied');
   }
