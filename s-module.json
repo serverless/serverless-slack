@@ -1,8 +1,8 @@
 {
-  "name": "serverless-slackbot",
+  "name": "serverless-slack",
   "version": "0.0.1",
   "profile": "aws-0",
-  "location": "https://github.com/serverless/serverless-slackbot",
+  "location": "https://github.com/serverless/serverless-slack",
   "runtime": "nodejs",
   "author": "",
   "description": "",
@@ -25,7 +25,7 @@
                 "Fn::Join": [
                   "-",
                   [
-                    "table/serverless-slackbot-teams",
+                    "table/serverless-slack-teams",
                     {
                       "Ref": "DataModelStage"
                     }
@@ -66,7 +66,7 @@
             "Fn::Join": [
               "-",
               [
-                "serverless-slackbot-teams",
+                "serverless-slack-teams",
                 {
                   "Ref": "DataModelStage"
                 }

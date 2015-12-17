@@ -5,7 +5,7 @@
  */
 
 // Require Logic
-var service = require('../_module');
+var service = require('../lib');
 
 // Authorize
 module.exports.authorize = service.authorization.authorize;

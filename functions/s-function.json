@@ -7,13 +7,13 @@
         ],
         "envVars": []
       },
-      "handler": "modules/serverless-slackbot/functions/handlers.authorize",
+      "handler": "modules/serverless-slack/functions/handlers.authorize",
       "timeout": 6,
       "memorySize": 1024,
       "eventSourceArn": "",
       "endpoints": [
         {
-          "path": "slackbot/authorization",
+          "path": "slack/authorization",
           "method": "GET",
           "authorizationType": "none",
           "apiKeyRequired": false,
@@ -45,19 +45,19 @@
         "excludePatterns": [],
         "envVars": []
       },
-      "handler": "modules/serverless-slackbot/functions/handlers.receiveWebhook",
+      "handler": "modules/serverless-slack/functions/handlers.receiveWebhook",
       "timeout": 6,
       "memorySize": 1024,
       "eventSourceArn": "",
       "endpoints": [
         {
-          "path": "slackbot/webhooks",
-          "method": "GET",
+          "path": "slack/webhooks",
+          "method": "POST",
           "authorizationType": "none",
           "apiKeyRequired": false,
           "requestParameters": {},
           "requestTemplates": {
-            "application/json": "{\"body\":\"$input.json('$')\"}"
+            "application/x-www-form-urlencoded": "{\"body\" : $input.json(\"$\")}"
           },
           "responses": {
             "400": {
@@ -80,13 +80,13 @@
         "excludePatterns": [],
         "envVars": []
       },
-      "handler": "modules/serverless-slackbot/functions/handlers.receiveSlashcommand",
+      "handler": "modules/serverless-slack/functions/handlers.receiveSlashcommand",
       "timeout": 6,
       "memorySize": 1024,
       "eventSourceArn": "",
       "endpoints": [
         {
-          "path": "slackbot/slashcommand",
+          "path": "slack/slashcommand",
           "method": "POST",
           "authorizationType": "none",
           "apiKeyRequired": false,
@@ -112,6 +112,3 @@
     }
   }
 }
-
-
-

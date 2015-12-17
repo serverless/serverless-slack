@@ -1,12 +1,12 @@
-# serverless-slackbot
+# serverless-slack
 
 **Note:** Work in progress...
 
-This is a Slackbot boilerplate that runs without servers (entirely on AWS Lambda).  It is designed to give you almost everything you need to build your own Slack Application and distribute it.
+This is a Serverless Module that offers Slack boilerplate funcitonality.  This runs without servers (entirely on AWS Lambda).  It is designed to give you almost everything you need to build your own Slack Application and distribute it.
 
 Unfortunately, this doesn't connect/support Slack's RTM (Websockets) API because AWS/Lambda do not support websockets.  But, it still can do tons of great stuff!
 
-**The best part is there are no servers required for this Slackbot**.  You get charged only when its called and you don't need to worry about scaling :)
+**The best part is there are no servers required for this**.  You get charged only when its called and you don't need to worry about scaling :)
 
 ## Features:
 
@@ -26,7 +26,7 @@ Unfortunately, this doesn't connect/support Slack's RTM (Websockets) API because
 In your Serverless project root directory, run:
 
 ```
-serverless module install https://github.com/serverless/serverless-slackbot
+serverless module install https://github.com/serverless/serverless-slack
 ```
 
 Then deploy the resources that have been added to your Serverless Project's `resources-cd.json` template:
@@ -39,14 +39,15 @@ Set these environment variables in your Serverless Project's Stage and Region, u
 
 * SLACK_OAUTH_CLIENT_ID
 * SLACK_OAUTH_CLIENT_SECRET
+* SLACK_VERIFICATION_TOKEN *(Optional - Recommended to verify requests are coming from Slack)
 * SLACK_AUTH_REDIRECT_URL *(Optional - Only set this up if you set up a custom domain with API Gateway)*
 
 Deploy the module's functions and endpoints.  Use the authorization endpoint as the **Redirect URI** for your Slack app.
 
 ### Setting Up Slash Commands
 
-In the [application settings page](https://api.slack.com/applications), you can create any number of Slash Commands for your app. Each Slash Command requires an endpoint. You can use the same default `/slackbot/slashcommand` endpoint that you deployed earlier for all Slash Commands, and in your function logic, you can check which Slash Command was POSTed and act accordingly. Here's how it works...
- 
+In the [application settings page](https://api.slack.com/applications), you can create any number of Slash Commands for your app. Each Slash Command requires an endpoint. You can use the same default `/slack/slashcommand` endpoint that you deployed earlier for all Slash Commands, and in your function logic, you can check which Slash Command was POSTed and act accordingly. Here's how it works...
+
 Open up the Slash Commands controller in `<module-dir>/_module/controllers/slashcommands.js`. By default, you should see the following code:
 
 ```javascript
@@ -87,7 +88,7 @@ module.exports.receive = function(event, context) {
   if (event.command === '/hello') {
     response.text = 'Hey There!';
   }
-  
+
   // Another Slash Command.
   if (event.command === '/myname') {
     response.text = 'Your name is ' + event.user_name;
