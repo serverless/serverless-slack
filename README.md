@@ -2,11 +2,11 @@
 
 **Note:** Work in progress...
 
-This is a Slackbot boilerplate that runs without servers (entirely on AWS Lambda).  It is designed to give you everything you need to build your own Slack Application and distribute it.
+This is a Slackbot boilerplate that runs without servers (entirely on AWS Lambda).  It is designed to give you almost everything you need to build your own Slack Application and distribute it.
 
-Unfortunately, this doesn't connect/support Slack's RTM (Websockets) API because AWS/Lambda don't support websockets.  But, it still can do tons of great stuff... and without servers, of course!
+Unfortunately, this doesn't connect/support Slack's RTM (Websockets) API because AWS/Lambda do not support websockets.  But, it still can do tons of great stuff!
 
-**The best part is there are no servers required for this Slackbot.  You get charged only when its called and you don't need to every worry about scaling this :)
+**The best part is there are no servers required for this Slackbot**.  You get charged only when its called and you don't need to worry about scaling :)
 
 ## Features:
 
@@ -43,4 +43,4 @@ Set these environment variables in your Serverless Project's Stage and Region, u
 
 Deploy the module's functions and endpoints.  Use the authorization endpoint as the **Redirect URI** for your Slack app.
 
-You will have to [register some Slash Commands](https://api.slack.com/applications) for your app if you are interested in those.
+You will have to [register some Slash Commands](https://api.slack.com/applications) for your app on Slack's site if you are interested in those.
