@@ -9,6 +9,18 @@
   "custom": {},
   "resources": {
     "cloudFormation": {
+      "LambdaIamPolicyDocumentStatements": [
+        {
+          "Effect": "Allow",
+          "Action": [ "*" ],
+          "Resource": {
+            "Fn::Join": [
+              ":",
+              [ "arn:aws:dynamodb", { "Ref": "AWS::Region" }, "*", "table/serverless-slackbot-teams" ]
+            ]
+          }
+        }
+      ],
       "Resources": {
         "DynamoDB": {
           "Type": "AWS::DynamoDB::Table",
