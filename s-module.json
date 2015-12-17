@@ -20,7 +20,7 @@
         }
       }
     ],
-    "Resources": {
+    "resources": {
       "DynamoDB": {
         "Type": "AWS::DynamoDB::Table",
         "Properties": {
