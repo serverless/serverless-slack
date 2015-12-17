@@ -92,7 +92,7 @@
           "apiKeyRequired": false,
           "requestParameters": {},
           "requestTemplates": {
-            "x-www-form-urlencoded": "#set($httpPost=$input.path('$').split(\"&\"))\n{\n#foreach($param in $httpPost)\n#set($keyValue=$param.split(\"=\"))\n\"$keyValue[0]\":\"$util.urlDecode($keyValue[1])\"#if( $foreach.hasNext ),#end\n#end\n}"
+            "x-www-form-urlencoded": "{\"body\" : $input.json(\"$\")}"
           },
           "responses": {
             "400": {
