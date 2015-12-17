@@ -2,12 +2,17 @@
  * Controller: Authorization
  * - Authorizes Slack via Oauth
  */
+
 var Team    = require('../models/team'),
     team    = new Team(),
     request = require('request');
 
-// Get Access Token
-module.exports.getAccessToken = function(event, context) {
+/**
+ * Authorize
+ * - Exchanges Code for AccessToken
+ */
+
+module.exports.authorize = function(event, context) {
 
   // Prepare response to get Access Token
   var SlackClientId     = process.env.SLACK_OAUTH_CLIENT_ID;
@@ -61,10 +66,10 @@ module.exports.getAccessToken = function(event, context) {
           message: "Sorry, something went wrong saving your team's information"
         });
       }
-      
+
       // Return response
       return context.done(null, {
-        message: 'Your team ' + slackTeam.name + ' has successfully conencted to this bot!'
+        message: 'Your team has successfully connected to this bot!'
       });
     });
   });

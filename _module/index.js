@@ -9,15 +9,13 @@ var ServerlessHelpers = require('serverless-helpers-js').loadEnv();
 
 // Export
 module.exports = {
-  services: {
-    slack:         require('./services/slack')
-  },
   models: {
-    teams:         require('./models/team')
+    teams:          require('./models/team'),
+    slack:          require('./models/slack')
   },
   controllers: {
-    authorization: require('./controllers/authorization'),
-    slashCommands: require('./controllers/slashcommands'),
-    webhooks:      require('./controllers/webhooks')
+    authorization:  require('./controllers/authorization'),
+    slashcommands:  require('./controllers/slashcommands'),
+    webhooks:       require('./controllers/webhooks')
   }
 };
