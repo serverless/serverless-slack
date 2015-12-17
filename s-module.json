@@ -15,7 +15,15 @@
         "Resource": {
           "Fn::Join": [
             ":",
-            [ "arn:aws:dynamodb", { "Ref": "AWS::Region" }, "*", "table/serverless-slackbot-teams" ]
+            [
+              "arn:aws:dynamodb",
+              { "Ref": "AWS::Region" },
+              "*",
+              "table/serverless-slackbot-teams-",
+              {
+                "Ref": "DataModelStage"
+              }
+            ]
           ]
         }
       }
