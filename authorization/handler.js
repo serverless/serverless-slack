@@ -5,7 +5,7 @@
  */
 
 // Require Logic
-var service = require('../lib');
+var service = require('../package');
 
 // Lambda Handler
 module.exports.getAccessToken = service.controllers.authorization.getAccessToken;

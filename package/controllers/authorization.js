@@ -3,7 +3,7 @@
  * - Authorizes Slack via Oauth
  */
 
-var Team = require('../models/teams'),
+var Team = require('./teams'),
     request = require('request');
 
 // Get Access Token

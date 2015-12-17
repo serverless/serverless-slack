@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Lib
+ * Package
  */
 
 // Load Serverless ENV vars
