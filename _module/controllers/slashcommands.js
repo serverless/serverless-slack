@@ -1,5 +1,5 @@
 /**
- * Slack SlashCommands Controller
+ * Controller: SlashCommands
  */
 
 var Slack = require('./slack');
