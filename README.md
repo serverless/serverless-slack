@@ -30,7 +30,7 @@ serverless module install https://github.com/serverless/serverless-slack
 Then deploy the resources that have been added to your Serverless Project's `resources-cd.json` template:
 
 ```
-serverless deploy resources
+serverless resources deploy
 ```
 
 Set these environment variables in your Serverless Project's Stage and Region, use `serverless env set`:
